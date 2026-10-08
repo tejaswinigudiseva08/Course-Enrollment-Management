@@ -1,0 +1,2 @@
+1|Java Full Stack|Raj|Morning|2
+2|sql basics|ram|Afternoon|3

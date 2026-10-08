@@ -1,0 +1,9 @@
+COURSE ENROLLMENT REPORT
+Students: 3
+Courses: 2
+ACTIVE enrollments: 3
+CANCELLED enrollments: 1
+Distinct students with active enrollments: 2
+Seats used per course:
+Course 1 | Java Full Stack | Seats used: 2 of 2
+Course 2 | sql basics | Seats used: 1 of 3
