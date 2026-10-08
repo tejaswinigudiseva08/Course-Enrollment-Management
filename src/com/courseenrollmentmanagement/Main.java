@@ -1,19 +1,12 @@
 package com.courseenrollmentmanagement;
 import java.io.IOException;
 import java.util.Scanner;
-
 public class Main {
-
-    // The ONE Scanner for the whole program (document rule).
     private static final Scanner scanner = new Scanner(System.in);
-
     private static final Admin admin = new Admin();
     private static CourseService service;
-
     public static void main(String[] args) {
         service = new CourseService(new FileManager());
-
-        // Load saved data. If any file is invalid, show the problem and stop.
         try {
             service.loadData();
         } catch (IOException e) {
@@ -22,9 +15,7 @@ public class Main {
             scanner.close();
             return;
         }
-
         boolean running = true;
-
         while (running) {
             System.out.println();
             System.out.println("MAIN MENU");
@@ -32,9 +23,7 @@ public class Main {
             System.out.println("2. Admin menu");
             System.out.println("3. Student menu");
             System.out.println("0. Exit");
-
             int choice = readChoice(3);
-
             switch (choice) {
                 case 1:
                     registerStudent();
@@ -54,9 +43,6 @@ public class Main {
 
         scanner.close();
     }
-
-    // ---------- Main menu action ----------
-
     private static void registerStudent() {
         String name = readRequiredText("Enter student name: ");
         String department = readRequiredText("Enter department: ");
@@ -68,9 +54,6 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
-
-    // ---------- Admin menu ----------
-
     public static void showAdminMenu() {
         admin.showProfile();
         boolean inAdminMenu = true;
@@ -133,8 +116,6 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
-
-    // Shared by the Admin and Student menus. The batch array filters the list.
     private static void viewCourses() {
         String[] batches = Course.getBatches();
         System.out.println("Filter courses by batch:");
@@ -164,8 +145,6 @@ public class Main {
         }
     }
 
-    // ---------- Student menu ----------
-
     public static void showStudentMenu() {
         Student student = null;
         while (student == null) {
@@ -178,7 +157,6 @@ public class Main {
                 System.out.println("Student ID " + id + " not found. Please try again.");
             }
         }
-
         int studentId = student.getId();
         student.showProfile();
         boolean inStudentMenu = true;
@@ -247,9 +225,6 @@ public class Main {
         }
     }
 
-    // ---------- Input helpers (all use the ONE Scanner) ----------
-
-    // Keeps asking until the user types a whole number.
     private static int readWholeNumber(String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -261,8 +236,6 @@ public class Main {
             }
         }
     }
-
-    // Keeps asking until the number is from min to max.
     private static int readIntInRange(String prompt, int min, int max) {
         while (true) {
             int number = readWholeNumber(prompt);
@@ -272,12 +245,9 @@ public class Main {
             System.out.println("Invalid choice. Please enter a number from " + min + " to " + max + ".");
         }
     }
-
     private static int readChoice(int max) {
         return readIntInRange("Enter choice: ", 0, max);
     }
-
-    // Keeps asking until the ID is 1 or more.
     private static int readPositiveId(String prompt) {
         while (true) {
             int number = readWholeNumber(prompt);
@@ -288,7 +258,6 @@ public class Main {
         }
     }
 
-    // Keeps asking until the text is not blank and has no '|'.
     private static String readRequiredText(String prompt) {
         while (true) {
             System.out.print(prompt);

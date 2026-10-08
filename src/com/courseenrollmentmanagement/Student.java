@@ -1,9 +1,6 @@
 package com.courseenrollmentmanagement;
-
 public class Student extends User {
-
     private final String department;
-
     public Student(int id, String name, String department) {
         super(id, name);
         if (id < 1) {
@@ -11,11 +8,9 @@ public class Student extends User {
         }
         this.department = requireText(department, "Department");
     }
-
     public String getDepartment() {
         return department;
     }
-
     @Override
     public void showProfile() {
         System.out.println("Student ID: " + getId());

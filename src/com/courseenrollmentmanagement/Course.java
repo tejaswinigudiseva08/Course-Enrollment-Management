@@ -1,11 +1,8 @@
 package com.courseenrollmentmanagement;
-
 public class Course {
         private static final String[] BATCHES = {"Morning", "Afternoon", "Evening"};
-
         public static final int MIN_CAPACITY = 1;
         public static final int MAX_CAPACITY = 1000;
-
         private final int id;
         private final String title;
         private final String trainer;
@@ -32,7 +29,6 @@ public class Course {
             this.capacity = capacity;
         }
 
-
         public static String[] getBatches() {
             return BATCHES.clone();
         }
@@ -45,8 +41,8 @@ public class Course {
             }
             return false;
         }
-
         public int getId() {
+
             return id;
         }
 
@@ -55,14 +51,17 @@ public class Course {
         }
 
         public String getTrainer() {
+
             return trainer;
         }
 
         public String getBatch() {
+
             return batch;
         }
 
         public int getCapacity() {
+
             return capacity;
         }
 

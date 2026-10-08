@@ -17,19 +17,13 @@ public class FileManager {
     private static final Path COURSES_FILE = DATA_FOLDER.resolve("courses.txt");
     private static final Path ENROLLMENTS_FILE = DATA_FOLDER.resolve("enrollments.txt");
     private static final Path REPORT_FILE = DATA_FOLDER.resolve("report.txt");
-
-
-
     public void createDataFolder() throws IOException {
         Files.createDirectories(DATA_FOLDER);
     }
-
-
     public ArrayList<Student> loadStudents() throws IOException {
         ArrayList<Student> students = new ArrayList<>();
         HashSet<Integer> usedIds = new HashSet<>();
         List<String> lines = readLines(STUDENTS_FILE);
-
         for (int i = 0; i < lines.size(); i++) {
             int lineNumber = i + 1;
             String[] fields = lines.get(i).split("\\|", -1);
@@ -81,7 +75,6 @@ public class FileManager {
         }
         return courses;
     }
-
 
     public ArrayList<Enrollment> loadEnrollments(List<Student> students, List<Course> courses)
             throws IOException {
@@ -160,8 +153,6 @@ public class FileManager {
         return enrollments;
     }
 
-
-
     public void saveStudents(List<Student> students) throws IOException {
         List<String> lines = new ArrayList<>();
         for (Student s : students) {
@@ -188,11 +179,9 @@ public class FileManager {
         writeLinesSafely(ENROLLMENTS_FILE, lines);
     }
 
-    // report.txt is only written. It is never loaded as project data.
     public void saveReport(List<String> reportLines) throws IOException {
         writeLinesSafely(REPORT_FILE, reportLines);
     }
-
 
     private List<String> readLines(Path file) throws IOException {
         List<String> lines = new ArrayList<>();
@@ -209,8 +198,6 @@ public class FileManager {
         }
         return lines;
     }
-
-
     private void writeLinesSafely(Path target, List<String> lines) throws IOException {
         Path temp = DATA_FOLDER.resolve(target.getFileName() + ".tmp");
         try {
@@ -226,7 +213,6 @@ public class FileManager {
             try {
                 Files.deleteIfExists(temp);
             } catch (IOException ignored) {
-                // nothing more we can do
             }
             throw new IOException("Could not save " + target.getFileName() + ": " + e.getMessage(), e);
         }
